@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<title>LEEVER MAGAZINE</title>
+
+<!-- bootstrap 을 cdn 에서 가져옴 -->
+<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+<!-- bootstrap 을 본 호스트에서 직접 서빙함. -->
+<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.5/yeti/bootstrap.min.css" />
+
+<style>
+#footer {
+    background-color: #333333;
+    line-height: 20px;
+    padding: 30px 20px;
+    margin-top: 60px;
+}
+</style>
+{% block extra_head %}
+{% endblock %}
+</head>
+
+<body>
+
+{% if messages %}
+<ul>
+    {% for message in messages %}
+        {{ message.tags }}
+        {{ message }}
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+<div class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/magazine">Magazine</a>
+        </div>
+    </div>
+</div>
+
+{% block content %}
+{% endblock %}
+
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 text-muted">
+                파이썬 웹프레임워크인 <a href="http://djangoproject.com" target="_blank">Django</a> 로 만들었습니다.<br/>
+            </div>
+            <div class="col-sm-6 text-right">
+                <a href="http://festi.kr" target="_blank">&copy; 쉐이크에이드</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+{% extends "magazine/layout.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+
+
+
+            <h1>{{ post.title }}</h1>
+            <p>작성시간 : {{ post.created_at }}</p>
+
+            <p>{{ post.content }}</p>
+
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default"><a href="{% url "magazine:comment_new" post.pk %}">새 댓글</a></button>
+  <button type="button" class="btn btn-default"><a href="edit">수정</a></button>
+  <button type="button" class="btn btn-default"><a href="/magazine/">글 목록</a></button>
+    <button type="button" class="btn btn-default"><a href="delete">삭제</a></button>
+</div>
+
+
+        <div class="panel panel-primary">
+            <h4>댓글목록</h4>
+
+            <ul>
+            {% for comment in post.comment_set.all %}
+                <li>{{comment.content}} at {{ comment.created_at}} </li>
+            {% empty %}
+                <li>등록된 댓글이 없습니다.</li>
+            {% endfor %}
+            </ul>
+
+            <hr/>
+        </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div>
+{% if post.image %}
+    <img src="{{ post.image.url }}"/>
+{% endif %}
+</div>
+
+
+
+{% endblock %}

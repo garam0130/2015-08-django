@@ -1,0 +1,48 @@
+{% extends "magazine/layout.html" %}
+
+{% block extra_head %}
+    <style>
+    #post_list .media {
+        margin-bottom: 10px;
+    }
+    #post_list .media-object {
+        width: 200px;
+        height: 200px;
+    }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+  <h1>LEEVER MAGAZINE</h1>
+  <p>리버 매거진에 오신것을 환영합니다.</p>
+</div>
+
+
+<div class="container">
+    <div class="row" id="post_list">
+
+        <p class="text-left">
+            <a href="{% url "magazine:new" %}" class="btn btn-primary btn-lg btn-block">add article</a>
+        </p>
+
+        <div class="row">
+        {% for post in post_list %}
+          <div class="post col-sm-6 col-md-4">
+            <div class="thumbnail">
+                {% if post.image %}
+                  <img class="media-object" src="{{ post.image.url }}" alt="{{ post.title }}" />
+                {% else %}
+                  <img class="media-object" src="" alt="이미지없음" />
+                {% endif %}
+              <div class="caption">
+                <h3> {{ post.title }} </h3>
+                <p><a href="/magazine/{{ post.id }}/" class="btn btn-primary" role="button">자세히</a> <a href="/magazine/{{post.pk}}/delete" class="btn btn-default" role="button">삭제</a></p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
